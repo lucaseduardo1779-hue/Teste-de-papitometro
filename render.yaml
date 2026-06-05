@@ -1,0 +1,34 @@
+# Blueprint do Render para o Palpitômetro Copa 2026.
+# O Render lê este arquivo automaticamente ao criar um "Blueprint" a partir do repositório.
+# Passo a passo completo em DEPLOY.md.
+
+services:
+  - type: web
+    name: palpitometro-copa-2026
+    runtime: node
+    plan: free              # Gratuito. ATENÇÃO: leia a nota de persistência no DEPLOY.md
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"          # node:sqlite exige Node 22.5+
+      - key: ADMIN_PASSWORD
+        generateValue: true  # O Render gera uma senha forte (veja/edite no painel)
+
+      # ----------------------------------------------------------------------
+      # PERSISTÊNCIA DOS DADOS (recomendado para o bolão valer de verdade)
+      # Para os palpites e o ranking NÃO se perderem entre reinícios:
+      #   1) Troque "plan: free" por "plan: starter" (instância paga, ~US$7/mês)
+      #   2) Descomente as 2 linhas de DB_PATH abaixo
+      #   3) Descomente o bloco "disk" no final
+      # ----------------------------------------------------------------------
+      # - key: DB_PATH
+      #   value: /data/worldcup.db
+
+    # DISCO PERSISTENTE — requer plan: starter (ou superior).
+    # disk:
+    #   name: data
+    #   mountPath: /data
+    #   sizeGB: 1

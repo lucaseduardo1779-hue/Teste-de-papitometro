@@ -73,15 +73,17 @@ Para ajustar qualquer jogo na origem, edite `data/seed.js` (apague o arquivo
 
 ## Deploy
 
-É um app Node + arquivos estáticos; roda em qualquer host que suporte Node 22+
-(Render, Railway, Fly.io, etc.). Configure:
+Guia completo, passo a passo, no **[DEPLOY.md](DEPLOY.md)** (configurado para o
+**Render** via `render.yaml` — deploy automático lendo o repositório).
 
-1. Comando de build: `npm install`
-2. Comando de start: `npm start`
-3. Variáveis: `ADMIN_PASSWORD` (e opcionalmente `PORT`, `DB_PATH`)
+Resumo: é um app Node + arquivos estáticos; roda em qualquer host com Node 22+.
+- Build: `npm install`
+- Start: `npm start`
+- Variáveis: `ADMIN_PASSWORD` (e, para persistência, `DB_PATH` apontando para um
+  **disco persistente**, já que o SQLite grava em arquivo).
 
-> Para manter os palpites entre deploys, aponte `DB_PATH` para um **disco
-> persistente** (volume), já que o SQLite grava em arquivo.
+> ⚠️ Para os palpites e o ranking **não se perderem**, é preciso um disco
+> persistente — veja a seção de persistência no `DEPLOY.md`.
 
 ## Estrutura
 
