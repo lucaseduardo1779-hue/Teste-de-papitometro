@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin · Palpitômetro Copa 2026</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .admin-wrap { max-width: 1000px; margin: 0 auto; padding: 30px 20px 80px; }
+    .admin-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+    .login { background: var(--card); padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow); max-width: 420px; margin: 60px auto; }
+    .login .field { margin-bottom: 16px; }
+    .tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .arow {
+      display: grid; grid-template-columns: 90px 1fr auto 1fr auto; align-items: center; gap: 10px;
+      background: var(--card); padding: 10px 14px; border-radius: 10px; box-shadow: var(--shadow); margin-bottom: 8px;
+    }
+    .arow .tag { font-size: 0.72rem; font-weight: 700; color: var(--ink-soft); }
+    .arow input.s { width: 44px; height: 40px; text-align: center; font-weight: 800; border: 1.5px solid var(--line); border-radius: 8px; }
+    .arow .nm { font-weight: 600; }
+    .arow .nm.r { text-align: right; }
+    .arow .edit { border: none; background: transparent; cursor: pointer; color: var(--green-dark); font-weight: 700; font-size: 0.8rem; }
+    .arow .savecell { display: flex; align-items: center; gap: 6px; }
+    .mini { padding: 8px 14px; font-size: 0.85rem; }
+    .ok { color: var(--green-dark); font-weight: 700; font-size: 0.8rem; }
+    .editbox { background: #fff7e6; border: 1px solid var(--gold); border-radius: 10px; padding: 12px; margin-bottom: 8px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .editbox .field label { font-size: 0.75rem; }
+    .editbox input { padding: 8px 10px; border: 1.5px solid var(--line); border-radius: 8px; }
+    .editbox .full { grid-column: 1 / -1; display: flex; gap: 8px; }
+    table.parts { width: 100%; border-collapse: collapse; background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    table.parts th, table.parts td { padding: 12px 14px; text-align: left; border-top: 1px solid var(--line); font-size: 0.9rem; }
+    table.parts th { background: #f8fafc; border: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-soft); }
+  </style>
+</head>
+<body style="background: var(--bg);">
+  <div class="admin-wrap">
+    <div class="admin-head">
+      <h1 style="margin:0; font-size:1.6rem;">⚙️ Admin · Copa 2026</h1>
+      <a href="index.html" class="nav-link" style="color: var(--green-dark);">← Voltar ao site</a>
+    </div>
+
+    <div id="login" class="login">
+      <h2 style="margin-top:0; font-size:1.2rem;">Acesso restrito</h2>
+      <div class="field">
+        <label for="pass">Senha de administrador</label>
+        <input type="password" id="pass" placeholder="senha" />
+      </div>
+      <button class="btn btn-primary" id="login-btn" style="width:100%;">Entrar</button>
+      <p id="login-err" style="color: var(--red); font-size: 0.85rem; min-height: 18px;"></p>
+    </div>
+
+    <div id="panel" class="hidden">
+      <div class="tabs">
+        <button class="chip active" data-tab="results">Lançar resultados</button>
+        <button class="chip" data-tab="participants">Participantes</button>
+      </div>
+
+      <div id="tab-results">
+        <div class="filters" id="stage-filters" style="margin-bottom:16px;"></div>
+        <p class="section-desc" style="margin-bottom:14px;">
+          Digite o placar e clique em <strong>Salvar</strong>. Para o mata-mata, use <strong>Editar</strong>
+          para definir os times e a data antes de lançar o resultado.
+        </p>
+        <div id="admin-matches"></div>
+      </div>
+
+      <div id="tab-participants" class="hidden">
+        <p class="section-desc">Pessoas que já enviaram palpites.</p>
+        <table class="parts">
+          <thead><tr><th>Nome</th><th>E-mail</th><th>Palpites</th><th>Cadastro</th></tr></thead>
+          <tbody id="parts-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palpitômetro · Copa do Mundo 2026</title>
+  <meta name="description" content="Dê seus palpites para todos os jogos da Copa do Mundo 2026 e dispute o ranking!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <div class="brand">⚽ Palpitômetro <span>2026</span></div>
+      <div class="nav-links">
+        <a href="#palpites" class="nav-link">Palpitar</a>
+        <a href="#ranking" class="nav-link" id="nav-ranking">Ranking</a>
+        <a href="admin.html" class="nav-link subtle">Admin</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <p class="kicker">EUA · México · Canadá — 11 de junho a 19 de julho</p>
+      <h1>Mostre que você entende de futebol.</h1>
+      <p class="subtitle">
+        Dê seu palpite para <strong>todos os jogos</strong> da Copa do Mundo 2026.
+        A cada acerto você ganha pontos e sobe no ranking. Quem cravar mais resultados, leva.
+      </p>
+      <div class="hero-actions">
+        <a href="#palpites" class="btn btn-primary">Começar a palpitar</a>
+        <a href="#ranking" class="btn btn-ghost">Ver ranking</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>104</strong><span>jogos</span></div>
+        <div><strong>48</strong><span>seleções</span></div>
+        <div><strong id="stat-players">—</strong><span>participantes</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- IDENTIFICACAO + PALPITES -->
+    <section id="palpites" class="section">
+      <div class="container">
+        <h2 class="section-title">Seus palpites</h2>
+        <p class="section-desc">
+          Identifique-se com nome e e-mail. Use o mesmo e-mail para voltar e editar seus palpites
+          a qualquer momento — cada jogo trava no horário do apito inicial.
+        </p>
+
+        <form id="identify-form" class="identify">
+          <div class="field">
+            <label for="name">Nome completo</label>
+            <input type="text" id="name" name="name" placeholder="Ex.: Lucas Eduardo" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="voce@email.com" autocomplete="email" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Carregar / iniciar palpites</button>
+        </form>
+
+        <div id="predictions-area" class="hidden">
+          <div class="toolbar">
+            <div class="filters" id="stage-filters"></div>
+            <div class="progress">
+              <span id="progress-text">0 / 0 preenchidos</span>
+              <div class="bar"><div id="progress-bar"></div></div>
+            </div>
+          </div>
+
+          <div id="matches"></div>
+
+          <div class="save-bar">
+            <span id="save-status"></span>
+            <button id="save-btn" class="btn btn-primary">Salvar palpites</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RANKING -->
+    <section id="ranking" class="section alt">
+      <div class="container">
+        <h2 class="section-title">🏆 Ranking</h2>
+        <p class="section-desc" id="ranking-desc">Carregando classificação…</p>
+        <div class="table-wrap">
+          <table class="ranking-table">
+            <thead>
+              <tr><th>#</th><th>Participante</th><th>Placar exato</th><th>Pontos</th></tr>
+            </thead>
+            <tbody id="ranking-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Palpitômetro Copa do Mundo 2026 · feito para a galera. Boa sorte! ⚽</p>
+  </footer>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
