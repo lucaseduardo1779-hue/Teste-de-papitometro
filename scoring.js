@@ -1,14 +1,11 @@
-// Regras de pontuacao do palpitometro.
+// Regras de pontuacao do palpitometro (estilo bolao tradicional).
 //
-// Por padrao, seguimos o pedido original: 1 ponto por ACERTO de resultado.
-// Aqui "acerto" significa cravar o PLACAR EXATO do jogo.
+//   POINTS_EXACT  = 3  -> cravou o placar exato (ex.: palpite 2x1, deu 2x1)
+//   POINTS_RESULT = 1  -> acertou so o vencedor/empate (ex.: palpite 2x1, deu 3x0)
 //
-// Caso queira premiar tambem quem acertou apenas o vencedor/empate (estilo
-// bolao tradicional), troque os valores abaixo. Exemplo comum:
-//   POINTS_EXACT  = 3  (cravou o placar)
-//   POINTS_RESULT = 1  (acertou so quem venceu / empate)
-export const POINTS_EXACT = 1;   // placar exato
-export const POINTS_RESULT = 0;  // acertou apenas o resultado (1x2)
+// Para usar "1 ponto so por placar exato", deixe EXACT = 1 e RESULT = 0.
+export const POINTS_EXACT = 3;   // placar exato
+export const POINTS_RESULT = 1;  // acertou apenas o resultado (1x2)
 
 function outcome(h, a) {
   if (h > a) return 'H';

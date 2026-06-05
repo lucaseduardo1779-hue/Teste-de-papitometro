@@ -6,14 +6,16 @@ As pessoas se identificam com **nome e e-mail**, dão palpites de placar para
 
 ## Como funciona a pontuação
 
-Por padrão: **1 ponto para cada placar exato cravado** (foi o pedido original).
+Estilo bolão tradicional (padrão):
 
-Quer premiar também quem acertou só o vencedor (estilo bolão tradicional)?
-Edite `scoring.js`:
+- **3 pontos** — cravou o **placar exato** (ex.: palpite 2×1, deu 2×1)
+- **1 ponto** — acertou só o **vencedor/empate** (ex.: palpite 2×1, deu 3×0)
+
+Quer "1 ponto só por placar exato"? Edite `scoring.js`:
 
 ```js
-export const POINTS_EXACT = 3;   // cravou o placar exato
-export const POINTS_RESULT = 1;  // acertou só quem venceu / empate
+export const POINTS_EXACT = 1;
+export const POINTS_RESULT = 0;
 ```
 
 ## Rodando localmente
@@ -57,13 +59,16 @@ Acesse:
 
 ## Sobre os dados dos jogos
 
-Os 12 grupos vêm do sorteio oficial da Copa 2026. Os **confrontos da fase de
-grupos estão todos corretos** (todos contra todos dentro de cada grupo).
-As **datas e horários são aproximados** — ajuste no painel admin se precisar.
-O mata-mata vem com jogos vazios ("A definir"), a serem preenchidos no admin
+Os **72 jogos da fase de grupos** estão cadastrados conforme a **tabela oficial**
+da Copa 2026: confrontos, datas e horários (**horário de Brasília**). No site os
+horários são sempre exibidos no fuso de Brasília, independentemente de onde o
+visitante esteja.
+
+O **mata-mata** (32 jogos) vem com os confrontos vazios ("A definir"), pois os
+times só são conhecidos após a fase de grupos — preencha-os no painel admin
 conforme a competição avança.
 
-Para ajustar grupos/datas na origem, edite `data/seed.js` (apague o arquivo
+Para ajustar qualquer jogo na origem, edite `data/seed.js` (apague o arquivo
 `worldcup.db` para recriar o banco do zero).
 
 ## Deploy

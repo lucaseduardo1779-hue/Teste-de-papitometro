@@ -33,9 +33,10 @@ function toast(msg, type = '') {
 
 function fmtDate(iso) {
   try {
-    return new Date(iso).toLocaleDateString('pt-BR', {
-      day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit',
-    });
+    return new Date(iso).toLocaleString('pt-BR', {
+      day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
+      timeZone: 'America/Sao_Paulo',
+    }) + ' (Brasília)';
   } catch { return ''; }
 }
 
